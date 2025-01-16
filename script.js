@@ -1,4 +1,4 @@
-// Select all <td> elements in the table
+// Select all <td> elements in the table with prices
 const tdItem = document.querySelectorAll('.tad td');
 
 // Create the "Get Total Price" button
@@ -10,9 +10,9 @@ document.body.appendChild(getSumBtn);
 const getSum = () => {
   let sum = 0;
 
-  // Calculate the sum of numeric values in <td> elements
+  // Calculate the sum of all numeric values in <td> elements
   tdItem.forEach(td => {
-    const value = parseFloat(td.textContent); // Parse text content as a number
+    const value = parseFloat(td.textContent); // Convert text to a number
     if (!isNaN(value)) {
       sum += value;
     }
@@ -20,16 +20,16 @@ const getSum = () => {
 
   // Create or update the total row
   const table = document.querySelector('.tad');
-  let totalRow = table.querySelector('.total-row');
-  
+  let totalRow = document.querySelector('#ans'); // Look for an existing row with id="ans"
+
   if (!totalRow) {
     // If the total row doesn't exist, create it
     totalRow = document.createElement('tr');
-    totalRow.className = 'total-row'; // Add a class for identification
+    totalRow.id = 'ans'; // Add the required id
     table.appendChild(totalRow);
   }
 
-  // Update the total row content
+  // Update the content of the total row
   totalRow.innerHTML = `<td colspan="100%">Total: ${sum}</td>`;
 };
 
